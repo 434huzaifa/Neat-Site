@@ -17,4 +17,31 @@ Salons are one of the very important places as this space is utilized by both me
 
 **NB: If you want to use forget password feature then change `EMAIL_HOST_USER = 'Your Gmail' EMAIL_HOST_PASSWORD = 'Gmail Password'` these two line in the settings.py. Also you have to enable Less secure app access from your given gmail account.**
 
-For More Information Read The Report.docx
+For More Information Read The [Report.pdf](https://github.com/434huzaifa/Neat-Site/blob/main/Report.pdf)
+
+## Report Include
+- Introduction:
+  - Description of Problem:
+  - Motivation:
+  - Challenges:
+- Non-Functional Requirements:
+  - Security:
+  - Verification:
+  - Reliability and scalability:
+  - Performance speed:
+  - Space:
+  - Availability:
+  - Usability:
+- Functionality:
+  - Global Feature:
+  - Consumer side features:
+  - Salon side feature:
+  - Admin:
+- Technologies:
+- Diagram:
+  - Use Case Diagram:
+  - Use Case Description:
+  - Class Diagram:
+  - Activity Diagram:
+  - Sequence Diagram:
+
