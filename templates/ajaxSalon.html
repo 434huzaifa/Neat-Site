@@ -1,0 +1,87 @@
+<script>
+  $("#searchbtn").click(function () {
+    console.log("HI");
+    let x = $("#searchkey").val();
+    let csr = $("input[name=csrfmiddlewaretoken]").val();
+    output = "";
+    if (x == "") {
+      console.log("Empty");
+    } else {
+      console.log(x);
+      mydata = {
+        keyword: x,
+        csrfmiddlewaretoken: csr,
+      };
+      $.ajax({
+        url: "{% url 'search' %}",
+        method: "POST",
+        data: mydata,
+        success: function (data) {
+          if (data.status == 1) {
+            salons = data.salon;
+            console.log(salons)
+            for (i = 0; i < salons.length; i++) {
+              output +=
+                "<tr><th class='a' scope='col'> <a href= '/salon/" +
+                salons[i].id +
+                "/'>" +
+                salons[i].sal_name +
+                "</a></th><th class='a' scope='col'> <a href='/salon/" +
+                salons[i].id +
+                "/'>" +
+                salons[i].sal_adr +
+                "</a></th><th class='a' scope='col'> <a href='/salon/" +
+                salons[i].id +
+                "/'>" +
+                salons[i].type +
+                "</a></th></tr>";
+            }
+            $("#thead").html(output);
+          }else{
+              console.log("Nothing")
+          }
+        },
+      });
+    }
+  });
+
+
+
+  $("#resetbtn").click(function () {
+    let csr = $("input[name=csrfmiddlewaretoken]").val();
+    output = "";
+    mydata = {
+    csrfmiddlewaretoken: csr,
+    };
+    $.ajax({
+    url: "{% url 'reset_search' %}",
+    method: "POST",
+    data: mydata,
+    success: function (data) {
+        $("form")[0].reset();
+        if (data.status == 1) {
+        salons = data.salon;
+        console.log(salons)
+        for (i = 0; i < salons.length; i++) {
+            output +=
+            "<tr><th class='a' scope='col'> <a href= '/salon/" +
+            salons[i].id +
+            "/'>" +
+            salons[i].sal_name +
+            "</a></th><th class='a' scope='col'> <a href='/salon/" +
+            salons[i].id +
+            "/'>" +
+            salons[i].sal_adr +
+            "</a></th><th class='a' scope='col'> <a href='/salon/" +
+            salons[i].id +
+            "/'>" +
+            salons[i].type +
+            "</a></th></tr>";
+        }
+        $("#thead").html(output);
+        }
+    },
+    });
+    
+  });
+</script>

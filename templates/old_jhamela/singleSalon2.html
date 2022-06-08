@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Neat Site</title>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+<body>
+    <header>
+        <nav class="navbar">
+            </div>
+            <br>
+            <br>
+            <span>Hello,{{request.user}}</sapn>
+                <span><a href="{% url 'logout' %}">Logout</a></span>
+        </nav>
+    </header>
+    <h1>Salon's Info</h1>
+    <span>Salon's Name:  {{salon.sal_name}}</span><br><br>
+    <span>Salon's Email:  {{'wait'}}</span><br><br>
+    <span>Salon's Phone Number:  {{salon.sal_phn_no}}</span><br><br>
+    <span>Salon's address:  {{salon.sal_adr}}</span><br><br>
+    <span>Salon's Opennig time:  {{salon.sal_otime}}</span><br><br>
+    <span>Salon's Closing time:  {{salon.sal_ctime}}</span><br><br>
+    <span>Salon's About:  {{salon.sal_about}}</span><br><br>
+    
+    <h1>Salon's Services</h1>
+    <form method="post">
+    {% csrf_token %}
+    {% for service in services %}
+    <p>{{service}} || {{service.s_price}} || {{service.s_ehour}}h {{service.s_emin}}m || {{service.s_about}}---<input type="checkbox" id="{{service.id}}" name="check1" value="{{service.id}}"></p>
+    {% endfor %}
+    <input type="submit" name="submit">
+    </form>
+    <h1>Taken Services</h1>
+    {% for a in appoint.a_service.all %}
+    <p>{{a}} || {{a.s_price}} || {{a.s_ehour}}h {{a.s_emin}}m---<a href="{% url 'appoint_service_delete' aId=appoint.id sId=a.id salonId=salon.id %}">Delete</a></p>
+    {% endfor %}
+    <p>Total Price: {{appoint.a_total_price}} || Total Time:{{appoint.a_total_etime}}<p>
+    <h1>Waiting Time</h1>
+    <p>{{wait_time}}m</p>
+</body>
+</html>

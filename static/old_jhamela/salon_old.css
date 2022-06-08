@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+  transition: all 0.3s ease;
+}
+body{
+  height: fit-content;;
+  width: 100%;
+  display: flex;
+  background-image: linear-gradient( 135deg, #008080 10%, #ff9fb5 100%);
+
+}
+::selection{
+  color: #978a8a;
+  background: 135deg, #008080 10%, #f3c6c6 100%
+}
+body::before,
+body::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+body::before{
+ 
+  opacity: 0.4;
+  background-image: linear-gradient( 135deg, #008080 10%, #f3c6c6 100%);
+}
+body::after{
+  opacity: 0.4;
+  background-image: linear-gradient( 135deg,  #008080 10%, #f3c6c6  100%);
+}
+header{
+  height: 85vh;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 12;
+  border-radius: 25px;
+  margin: auto;
+  margin-top: 4%;
+  position: relative;
+  height:fit-content;
+}
+header .navbar{
+  margin: auto;
+  width: 100%;
+  padding: 35px 50px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .menu{
+  display: flex;
+  flex-wrap: wrap;
+}
+.navbar .logo a{
+  text-decoration: none;
+  font-size: 22px;
+  color: #000;
+  font-weight: 500;
+}
+.navbar .menu li{
+  list-style: none;
+  margin: 0 6px;
+  margin-right: 20px;
+}
+.navbar .menu a{
+  color: #000;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.navbar .menu a:hover{
+  color: #f2f2f2;
+}
+  header .text-content
+  {
+    width: 40%;
+    margin: 100px 0 0 50px ;
+  }
+  .navbar .title
+  {
+    color: rgb(0, 0, 0);
+    margin-top: -90px;
+    margin-inline: -250px;
+
+    
+  }
+  .navbar.search {
+    width: 200%;
+    height: 40%;
+    margin: 150px auto;
+    background: #444;
+    background: rgba(0,0,0,.2);
+    background-color: #444;
+    border-radius:  3px;
+    border: 1px solid #fff;
+  }
+   
+    
+  input {
+    width: 41%;
+    padding: 10px 5px;
+    margin-right: 100px;
+    color: rgb(0, 0, 0);
+    border: 0;
+    background: transparent;
+    border-radius: 3px 0 0 3px;
+    
+  }
+
+      button {
+        position: relative;
+        float: right;
+        border: 0;
+        padding: 0;
+        height: 40px;
+        width: 120px;
+        color: rgb(0, 0, 0);
+        font-size: 18px;
+        background-color: #ffffff67;
+        border-radius: 2px;
+        margin-right: 277px;
+        margin-top: -42px;
+       
+      }
+      button:hover{
+        color: #ffffff;
+        background-color: #978a8a2c;
+      }
+  .button1{
+    position: relative;
+    float: right;
+    border: 0;
+    padding-left: 10px;
+    height: 40px;
+    width: 80px;
+    padding-right: 30px;
+    font-size: 18px;
+    background-color: #5bbbabb7;
+    padding-top: 4px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    
+    
+  }
+.button1 a{
+  text-decoration: none;
+  color: #000;   
+  text-align: center;
+}
+.button1 a:hover
+{
+  color: rgb(202, 52, 52);
+  font-weight: 500px;
+}
+.header.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+}
+
+
+.table {
+	width: 80%;
+  margin-top: 30px ;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(90, 90, 90, 0);
+  position: relative;
+  max-height: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -10px;
+}
+
+th {
+	padding: 15px;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: rgb(0, 0, 0);
+  text-align: left;
+}
+
+
+
+@media screen and (max-width: 620px) {
+.searchBox:hover > .searchInput {
+    width: 150px;
+    padding: 0 6px;
+}
+}

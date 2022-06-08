@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Salon list</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'salon.css' %}">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="{% static 'banner.png' %}"
+                         alt="neat site banner"
+                         width="200"
+                         height="60">
+                </div>
+                <span>Hello,{{request.user}}</sapn>
+            </div>
+            <br>
+            <form class="search" action="">
+                <input type="search" placeholder="Search here..." required>
+                <button type="submit">Search</button>
+            </form>
+            <div class="button1">
+                <a href="{% url 'logout' %}" class="button" role="button"> Logout </a>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="head"
+             style="padding-top: 10px;
+                    padding-bottom: 10px;
+                    text-align: center;">
+            <hr>
+        </div>
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Type</th>
+            </tr>
+            {% for salon in salons %}
+                <style>
+                    tr:hover { 
+                        background: rgba(15, 255, 255, 0.199); 
+                     }
+                    th a { 
+                        display: block; 
+                        padding: 16px; 
+                        text-decoration:none;
+                        
+                     }
+                </style>
+                    <tr>
+                        
+                        <th class="a" scope="col"><a href="{% url 'salon' salon.id %}">{{ salon.sal_name }}</a></th>
+                        <th class="a" scope="col"><a href="{% url 'salon' salon.id %}">{{ salon.sal_adr }}</a></th>
+                        <th class="a" scope="col"><a href="{% url 'salon' salon.id %}">{{ salon.type }}</a></th>
+                        
+                    </tr>
+                
+            {% endfor %}
+        </thead>
+    </table>
+</div>
+</header>
+</body>
+</html>

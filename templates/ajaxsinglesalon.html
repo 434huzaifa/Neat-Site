@@ -1,0 +1,140 @@
+<script>
+  $("#servicebtn").click(function () {
+    var checks = [];
+    let csr = $("input[name=csrfmiddlewaretoken]").val();
+    let id = $("#salonid").val();
+    let cartid = $("#cartid").val();
+    $.each($("input[name='check1']:checked"), function () {
+      checks.push($(this).val());
+      $(this).closest("details").fadeOut();
+    });
+    mydata = { id: id, checks: checks, csrfmiddlewaretoken: csr };
+    if (checks.length != 0) {
+      $.ajax({
+        url: "{% url 'service_cart' %}",
+        method: "POST",
+        data: mydata,
+        success: function (data) {
+          console.log(data);
+          if (data.status == 1) {
+            cart = data.cart;
+            if (cart != "") {
+              output = "";
+              for (i = 0; i < cart.length; i++) {
+                output +=
+                  "<table class='table table-striped'><thead><tr><th scope='col'>" +
+                  cart[i].name +
+                  "</th><th scope='col'>" +
+                  cart[i].price +
+                  "TK</th><th scope='col'>" +
+                  cart[i].hour +
+                  "H" +
+                  cart[i].min +
+                  "M</th><th scope='col'><input class='btn btn-primary btn-del' type='button' data-sid='" +
+                  cart[i].id +
+                  "' value='Delete'></th></tr></thead></table>";
+              }
+              $("#whatever").html(output);
+              $("#cartid").val(data.cart_id);
+            }
+          }
+        },
+      });
+    } else {
+      console.log("No Check");
+    }
+  });
+
+  $("#deletebtn").on("click", ".btn-del", function () {
+    console.log("delete");
+    let id = $(this).attr("data-sid");
+    let cartid = $("#cartid").val();
+    let csr = $("input[name=csrfmiddlewaretoken]").val();
+    mydata = { id: id, cartid: cartid, csrfmiddlewaretoken: csr };
+    console.log(mydata);
+    mythis = this;
+    $.ajax({
+      url: "{% url 'appoint_service_delete' %}",
+      method: "POST",
+      data: mydata,
+      success: function (data) {
+        console.log(data);
+        if (data.status == 1) {
+          serv = data.serv;
+          if (serv != "") {
+            output = "";
+            for (i = 0; i < serv.length; i++) {
+              output +=
+                "<details><summary><table class='table table-striped'><thead id='serbody'><tr><th scope='col'>" +
+                serv[i].name +
+                "</th><th scope='col'>" +
+                serv[i].price +
+                "TK</th><th scope='col'>" +
+                serv[i].hour +
+                "H" +
+                serv[i].min +
+                "M</th><th scope='col'><label class='container'><input type='checkbox' id='" +
+                serv[i].id +
+                "' name='check1' value='" +
+                serv[i].id +
+                "'><span class='checkmark'></span></label></th></tr></thead></table></summary><p></p><li>" +
+                serv[i].about +
+                "</li><p></p></details>";
+            }
+            $(".service-row").html(output);
+          }
+          $(mythis).closest("tr").fadeOut();
+        }
+      },
+    });
+  });
+
+  $("#appointmentbtn").click(function () {
+    let cartid = $("#cartid").val();
+    let wait = $("#waitime").val();
+    if (wait==""){
+        wait=0
+    }
+    let csr = $("input[name=csrfmiddlewaretoken]").val();
+    mydata = { cartid: cartid, csrfmiddlewaretoken: csr };
+    $.ajax({
+      url: "{% url 'make_appoint' %}",
+      method: "POST",
+      data: mydata,
+      success: function (data) {
+        console.log(data);
+        if (data.status == 1) {
+          x = data.service;
+          hour = data.hour;
+          min = data.min;
+          price = data.price;
+          output = "";
+          for (i = 0; i < x.length; i++) {
+            output +=
+              "<table class='table table-striped'><thead><tr><th scope='col'>" +
+              x[i].name +
+              "</th><th scope='col'>" +
+              x[i].price +
+              "</th><th scope='col'>" +
+              x[i].hour +
+              "H" +
+              x[i].min +
+              "M</th></tr></thead></table>";
+          }
+          output +=
+            "<br><div class='input-box'><span class='details'>Total Price:" +
+            price +
+            "TK</span></div><div class='input-box'><span class='details'>Total Time:" +
+            hour +
+            "H" +
+            min +
+            "M</span></div><div class='input-box'><span class='details'>WaitingTime:" +
+            wait +
+            "MIN</span></div><divclass='input-box'><span class='details'>Status:Pending</span></div>";
+          $(".lowerpart").html(output);
+          $("#whatever").fadeOut();
+        }
+      },
+    });
+  });
+</script>

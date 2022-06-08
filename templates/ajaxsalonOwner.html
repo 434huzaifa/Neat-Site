@@ -1,0 +1,57 @@
+<script>
+  $("#deletebtn").on("click", ".btn-del", function () {
+    let id = $(this).attr("data-sid");
+    let csr = $("input[name=csrfmiddlewaretoken]").val();
+    mydata = { id: id, csrfmiddlewaretoken: csr };
+    mythis = this;
+    $.ajax({
+      url: "{% url 'delete_service' %}",
+      method: "POST",
+      data: mydata,
+      success: function (data) {
+        console.log(data);
+        if (data.status == 1) {
+          console.log("success");
+          $(mythis).closest(".service-row").fadeOut();
+        }
+      },
+    });
+  });
+
+  $("#pending").on("click", ".btn-ac", function () {
+    let data = $(this).attr("data-sid");
+    let s = data.split("#");
+    let csr = $("input[name=csrfmiddlewaretoken]").val();
+    id = s[0];
+    action = s[1];
+    mydata = { id: id, action: action, csrfmiddlewaretoken: csr };
+    mythis = this;
+    $.ajax({
+      url: "{% url 'update_status' %}",
+      method: "POST",
+      data: mydata,
+      success: function (data) {
+        console.log(data);
+        if (data.status == 1) {
+          console.log("success");
+          appoint = data.appoint;
+          output = "";
+          for (i = 0; i < appoint.length; i++) {
+            output +=
+              "<div class='service-row'><div class='row-data'><span><strong>Client:</strong>" +
+              appoint[i].name +
+              "</span><br><span><strong>Services:</strong></span><span>" +
+              appoint[i].services +
+              "</span></div><div class='tool-button'><input class='btn btn-primary btn-ac' type='button' data-sid='" +
+              appoint[i].id +
+              "#2' value='Done' style='margin-top:-50px;'><input class='btn btn-primary btn-ac' type='button' data-sid='" +
+              appoint[i].id +
+              "#4' value='Absent' style='margin-top:-50px;margin-left: 5px;'></div><hr></div>";
+          }
+          $(".row-service").html(output);
+        }
+        $(mythis).closest(".service-row").fadeOut();
+      },
+    });
+  });
+</script>

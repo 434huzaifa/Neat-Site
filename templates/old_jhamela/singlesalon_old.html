@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'singlesalon.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="app">
+        <div class="header">
+            <div class="header-profile">
+                <img class="profile-img" src="" alt="">
+                <span>Hello,{{ request.user }}</span>
+            </div>
+            <form class="search" action="">
+                <input type="search" placeholder="Search here..." required>
+                <button type="submit">Search</button>
+            </form>
+            <div class="button3">
+                <a href="{% url 'logout' %}" class="button" role="button">Logout</a>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="left-side">
+                <div class="side-wrapper">
+                    <div class="side-title">
+                        <i class="fas fa-map-marker-alt"></i>Find Us
+                    </div>
+                    <div class="side-menu">
+                        <span>{{ salon.sal_adr }}</span>
+                    </div>
+                </div>
+                <div class="side-wrapper">
+                    <div class="side-title">
+                        <i class="fa fa-phone"></i> Call us
+                    </div>
+                    <div class="side-menu">
+                        <span>{{ salon.sal_phn_no }}</span>
+                    </div>
+                </div>
+                <div class="side-wrapper">
+                    <div class="side-title">
+                        <i class="fas fa-clock"></i> Opening Time
+                    </div>
+                    <div class="side-menu">
+                        <span>{{ salon.sal_otime }}</span>
+                    </div>
+                    <div class="side-title">
+                        <i class="fas fa-clock"></i> Closing Time
+                    </div>
+                    <div class="side-menu">
+                        <span>{{ salon.sal_ctime }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="main-container">
+                    <h3>Services</h3>
+                    
+                        <form method="post">
+                            {% csrf_token %}
+                            <table class="table table-striped">
+                                {% for service in services %}
+                                <thead>
+                                    <th scope="col">{{ service }}</th>
+                                    <th scope="col">{{ service.s_price }}TK</th>
+                                    <th scope="col">{{ service.s_ehour }}H {{ service.s_emin }}M</th>
+                                    <th scope="col">
+                                        <label class="container">
+                                            <input type="checkbox" id="{{service.id}}" name="check1"
+                                                value="{{service.id}}">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </th>
+                                </thead>
+                                {% endfor %}
+                            </table>
+                    
+                   
+                        <div class="button">
+                            <input type="submit" value="Appointment Request">
+                        </div>
+                    
+                    </form>
+
+                    <div class='taken'>
+                    <h3>Taken Services</h3>
+                    <table class="table table-striped">
+                        {% for a in appoint.a_service.all %}
+                        <thead>
+                            <th scope="col">{{a}}</th>
+                            <th scope="col">{{ a.s_price }}TK</th>
+                            <th scope="col">{{ a.s_ehour }}H {{ a.s_emin }}M</th>
+                            <th class="button1">
+                                <a href="{% url 'appoint_service_delete' aId=appoint.id sId=a.id salonId=salon.id %}">Delete</a>
+                            </th>
+                        </thead>
+                        {% endfor %}
+                    </table>
+                    <div class="input-box">
+                        <span class="details">Total Price: {{ appoint.a_total_price }}TK</span>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Total Time: {{ appoint.a_total_etime }}MIN</span>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Waiting Time:{{ wait_time }}MIN</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

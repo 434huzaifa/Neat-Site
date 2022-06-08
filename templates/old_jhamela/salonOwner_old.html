@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'salonowner.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{% static 'banner.png' %}" alt="neat site banner" width="200" height="60">
+            </div>
+            <ul class="menu">
+                <li>
+                    <a href="#"></a>
+                </li>
+                <li>
+                    <a href="{% url 'salons' %}"></a>
+                </li>
+                <li>
+                    <a href="#"></a>
+                </li>
+                <li>
+                    <a href="#"></a>
+                </li>
+                <br>
+            </ul>
+            </div>
+            <div>
+                <span>Hello,{{request.user}}</sapn>
+                    <span><a href="{% url 'logout' %}">Logout</a></span><br>
+            </div><br><br>
+        </nav>
+        <br><br>
+        <div class="services">
+            <h1>Salon's Service</h1>
+            <p class="add-service"><a href="{% url 'service' %}">Add Service</a></button>
+                {% for service in services %}
+            <div class="service-row">
+                <div class="row-data">
+                    <h3>{{service}}</h3>
+                    <span>
+                        <strong> Price:</strong> {{service.s_price}}Tk
+                    </span>
+                    <span>
+                        <strong> Time Take:</strong> {{service.s_ehour}} Hour {{service.s_emin}} Min
+                    </span><br>
+                    <small>
+                        {{service.s_about}}
+                    </small>
+                    <hr>
+                </div>
+                <div class="delete-button">
+                    <button><a href="{% url 'delete_service' service.id %}">Delete</a></button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <br><br>
+        <h1>Salon's Appointment</h1>
+        <h2>Pending</h2>
+        {% for appoint in appoints %}
+        {% if appoint.a_status == 'Pending' %}
+        <div class="service-row">
+            <div class="row-data">
+                <span> <strong> Client:</strong> {{appoint.a_client}}  </span><br>
+                <span> <strong> Services: </strong> </span>
+                {% for service in appoint.a_service.all %}
+                <span>{{service}},</span>
+                {% endfor %}
+                
+            </div>
+            <div class="tool-button">
+                <button><a href="{% url 'update_status' Id=appoint.id status='1' %}">Accept</a></button>
+                <button><a href="{% url 'update_status' Id=appoint.id status='3' %}">Reject</a></button>
+            </div>
+            <hr>
+        </div>
+            {% endif %}
+            {% endfor %}
+
+            <h2>Accepted</h2>
+            {% for appoint in appoints %}
+            {% if appoint.a_status == 'Accept' %}
+            <div class="service-row">
+                <div class="row-data">
+                    <span> <strong> Client:</strong> {{appoint.a_client}}  </span><br>
+                    <span> <strong> Services: </strong> </span>
+                    {% for service in appoint.a_service.all %}
+                    <span>{{service}},</span>
+                    {% endfor %}
+                    
+                </div>
+                <div class="tool-button">
+                    <button><a href="{% url 'update_status' Id=appoint.id status='2' %}">Done</a></button>
+                    <button><a href="{% url 'update_status' Id=appoint.id status='4' %}">Absent</a></button>
+                </div>
+                <hr>
+            </div>
+                {% endif %}
+                {% endfor %}
+
+
+            <!-- <h2>Done</h2>
+            {% for appoint in appoints %}
+            {% if appoint.a_status == 'Done' %}
+            <div class="service-row">
+                <div class="row-data">
+                    <span> <strong> Client:</strong> {{appoint.a_client}}  </span><br>
+                    <span> <strong> Services: </strong> </span>
+                    {% for service in appoint.a_service.all %}
+                    <span>{{service}},</span>
+                    {% endfor %}
+                    
+                </div>
+                <hr>
+            </div>
+                {% endif %}
+                {% endfor %}
+
+       
+
+
+            <h2>Absent</h2>
+            {% for appoint in appoints %}
+            {% if appoint.a_status == 'Absent' %}
+            <div class="service-row">
+                <div class="row-data">
+                    <span> <strong> Client:</strong> {{appoint.a_client}}  </span><br>
+                    <span> <strong> Services: </strong> </span>
+                    {% for service in appoint.a_service.all %}
+                    <span>{{service}},</span>
+                    {% endfor %}
+                    
+                </div>
+                <hr>
+            </div>
+                {% endif %}
+                {% endfor %} -->
+
+
+       
+
+    </header>
+
+
+</body>
+
+</html>
