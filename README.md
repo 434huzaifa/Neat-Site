@@ -1,12 +1,13 @@
+# This is the project of my course Information System Analysis and Design
 Salons are one of the very important places as this space is utilized by both men and women to groom themselves. In today’s digital world time is money. People most of the time waste their valuable time to find the perfect salon for them.  So, it is important to create a platform where people can find the list of the salons in one place.
 
-# Motivation
+## Motivation
 - Time-saving
 - Sum up information
 - Benefits of salons
 - Business revenue
 
-# Technologies
+## Technologies
 - HTML
 - CSS
   - Bootstrap (in some placeses mostly vanila)
