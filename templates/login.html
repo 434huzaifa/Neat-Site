@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Neat Site</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'tset.css' %}">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="{% static 'banner.png' %}"
+                         alt="neat site banner"
+                         width="200"
+                         height="60">
+                </div>
+                
+            </div>
+            <br>
+            <div class="dropdown">
+                <button class="dropbtn">Register</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'salonReg' %}">Salon</a>
+                    <a href="{% url 'clientReg' %}">Client</a>
+                </div>
+            </div>
+            <br>
+        </nav>
+       
+        <div class="main_div">
+            <div class="title">Login</div>
+            <form method="post">
+                {% csrf_token %}
+                {% for message in messages %}
+                    <p>
+                        {{ message }}
+                    </p>
+                {% endfor %}
+                <div class="input_box">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <div class="icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="input_box">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <div class="icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <div class="option_div">
+                    <div class="check_box">
+                        <input type="checkbox" name="remember_me">
+                        <span>Remember me</span>
+                    </div>
+                    <div class="forget_div">
+                        <a href="{% url 'reset_password' %}">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="input_box button">
+                    <input type="submit" value="Login">
+                </div>
+                <div class="sign_up0">No Account?</div>
+                <div class="sign_up">
+                    <br>
+                    <a href="{% url 'salonReg' %}">Salon Signup</a>
+                </div>
+                <div class="sign_up1">
+                    <a href="{% url 'clientReg' %}">Client Signup</a>
+                </div>
+            </form>
+        </div>
+        <div class="text-content">
+            <h2>Welcome To Neat Site</h2>
+            <p>
+                A place where you can make an appointment for your style.
+            </p>
+        </div>
+    </header>
+</body>
+</html>

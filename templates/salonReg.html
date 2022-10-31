@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Salon signup</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'salonReg.css' %}">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="{% static 'banner.png' %}"
+                         alt="neat site banner"
+                         width="200"
+                         height="60"  >
+                </div>
+                <br>
+                <br>
+                <br>
+                <ul class="menu">
+                    
+                    <li>
+                        <a href="{% url 'home' %}"></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home' %}"></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home' %}"></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+
+                </ul>
+                <br>
+            </nav>
+            <div class="container">
+                <div class="title">Salon Registration</div>
+                <div class="content">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for message in messages %}
+                        {{message}}
+                        {% endfor %}                     
+                        <div class="user-details">
+                            <div class="input-box">
+                                <span class="details">Username</span>
+                               {{Userform.username}}
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Email</span>
+                                {{Userform.email}}
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Salon Name</span>
+                                {{Salonform.sal_name}}
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Address</span>
+                                {{Salonform.sal_adr}}
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Phone Number</span>
+                                {{Salonform.sal_phn_no}}
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Password</span>
+                                {{Userform.password1}}
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Confirm Password</span>
+                                {{Userform.password2}}
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Opening Time of Salon:</span>
+                                {{Salonform.sal_otime}}
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Closing Time of Salon:</span>
+                                {{Salonform.sal_ctime}}
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Type :</span>
+                                {{Salonform.type}}
+                            </div>
+                            
+                            <div class="form-group">
+                                <span class="details">About</span>
+                                {{Salonform.sal_about}}
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="button">
+                            <input type="submit" value="Register">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </header>
+    </body>
+</html>
