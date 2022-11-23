@@ -7,7 +7,7 @@ Salons are one of the very important places as this space is utilized by both me
 - Benefits of salons
 - Business revenue
 ## Screenshot
-[![picture 1](https://i.ibb.co/3snxD43/315906071-1183923709143082-8319619192194163782-n.png)]
+![picture 1](https://i.ibb.co/3snxD43/315906071-1183923709143082-8319619192194163782-n.png)
 
 ## Technologies
 - HTML
