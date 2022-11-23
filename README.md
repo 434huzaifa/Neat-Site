@@ -8,6 +8,10 @@ Salons are one of the very important places as this space is utilized by both me
 - Business revenue
 ## Screenshot
 ![picture 1](https://i.ibb.co/3snxD43/315906071-1183923709143082-8319619192194163782-n.png)
+![picture 2](https://i.ibb.co/s6bqwnf/314430964-1879245235750141-25456412791407743-n.png)
+![picture 3](https://i.ibb.co/12XxdLQ/315530679-661783945571690-6269931740364827560-n.png)
+![picture 4](https://i.ibb.co/9ttqQFw/315107097-1335190580650157-731126598771336966-n.png)
+![picture 5](https://i.ibb.co/JFHpv78/313086592-816856879588354-2732159273144452570-n.png)
 
 ## Technologies
 - HTML
